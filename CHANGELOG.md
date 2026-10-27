@@ -28,13 +28,6 @@
 
 # Changelog
 
-## v0.7 launch preparation — 2026-10-27
-
-- Reworked English/Chinese entry points around the offline workflow and limited evidence; added a Chinese quickstart and bilingual contribution/security guidance.
-- Added original social/architecture/fixture-demo artwork with editable sources and a reproducible optional renderer, plus manual launch drafts and a first-month plan.
-- Included launch materials in the source allowlist without allowing arbitrary image exports elsewhere. Preserved core Skill bytes, historical results and Git history.
-- No new model efficacy run; remote verification and publication status live in LAUNCH_REPORT.md.
-
 ## v0.5 — 2026-10-27
 
 - Added a separate blind evaluator-calibration builder/scorer using three prior originals and three predeclared programmatic defect copies; no new treatment answers were generated.
