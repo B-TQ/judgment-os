@@ -1,5 +1,13 @@
 # v0.7 — GitHub source release
 
+## Documentation and presentation maintenance — 2026-10-27
+
+- Reordered the bilingual README around a labeled Skill-default concept and separate optional-Skill/evaluation entry points; added responsive original artwork and focused documentation navigation.
+- Clarified compatibility feedback, existing release instructions and manual community drafts. Repaired a missing legacy portable reference by copying its existing version-matched source.
+- VERSION remains 0.7. Core guidance, research data/protocols, tests, v0.7 tag and original release assets are unchanged. Validation and scope are recorded in GITHUB_OPTIMIZATION_REPORT.md.
+
+## Original v0.7 release
+
 - Reworked English/Chinese entry points around the offline workflow and limited evidence; added a Chinese quickstart and bilingual contribution/security guidance.
 - Added original social/architecture/fixture-demo artwork with editable sources and optional renderer, manual launch drafts and a first-month plan.
 - Included artwork only from the reviewed launch directory in source packaging, with a regression check excluding arbitrary study images. Preserved core Skill bytes, historical results and Git history.

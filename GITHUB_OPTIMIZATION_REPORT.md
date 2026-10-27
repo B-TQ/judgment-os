@@ -48,12 +48,17 @@
 - GitHub Markdown API 实际渲染两种语言，保留 picture/source。使用本地 GitHub 风格 CSS，在 1440×1000 与 390×844、亮／暗两种偏好下检查：改前／改后共 16 个状态，页面无横向溢出、无图片加载失败；手机／暗色 Hero 选择正确。
 - 前后预览明确标注 **LOCAL GFM LAYOUT PREVIEW / NOT A LIVE GITHUB SCREENSHOT**。这是本地布局验证，不能替代真实 GitHub 站点 UI 测试；浏览器本轮页面未能正常载入。GitHub 自选主题若与系统偏好不同，Hero 可能沿用另一配色，但两套配色均自带背景并可读。
 - 当前源码及可达历史做启发式隐私扫描与人工复核；无真实凭据或私人路径进入本次公开改动。原测试中虚构的 someone 路径为已确认示例。扫描不是完整安全认证。
+- 三份 Issue 表单及两条导航项通过 YAML 解析检查。
 
 ## Git 与远端状态
 
 基线提交：`104727ccc19069dff3cf43989cf4fd7c5a613db6`。
 
-本地改动已准备并验证，本轮提交哈希、推送及远端 CI 在实际完成后补记。本句不是成功声明。
+优化主体提交：[`44db4fccbde571e976822b400e23433d4e4e574d`](https://github.com/B-TQ/judgment-os/commit/44db4fccbde571e976822b400e23433d4e4e574d)。已成功推送到 main。
+
+主体提交的 [远端 CI](https://github.com/B-TQ/judgment-os/actions/runs/40529133669) 已成功：Windows／Ubuntu × Python 3.11／3.14 四组全部完成并通过。本报告随后补记验证；后续报告提交的状态见 [最新工作流](https://github.com/B-TQ/judgment-os/actions/workflows/ci.yml)。
+
+远端中英 README 与本地字节一致，GitHub 渲染 HTML 保留 picture/source；共核对 43 份首页／导航／SVG／PNG 的远端 blob 与本地一致，抽查 Hero 与手机概念图公开 URL 均返回 HTTP 200。仓库 Description／七个 Topics 已核对。Release 新说明已实际生效，四份原附件的哈希均保持不变。
 
 v0.7 原 tag 仍指向上述基线，原源码 ZIP 的 SHA-256 保持 `71e550b61deb98057ac0b79ac89566ef44d46154ad4f6b98842b060512ceeff8`。最新 main 的文档与发布快照可以不同，不更换旧附件或捏造新版本。
 
