@@ -39,5 +39,5 @@ for record in records:
     if record["id"] == "C08":
         record["user_prompt"] += " First line must start with 'Fictional object:'; the second line must be one interpretive sentence."
 target = Path(__file__).resolve().parents[1]/"evals"/"cases.json"
-target.write_text(json.dumps(records,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+target.write_bytes((json.dumps(records,ensure_ascii=False,indent=2)+"\n").encode("utf-8"))
 print(f"Wrote {len(records)} cases to {target}")

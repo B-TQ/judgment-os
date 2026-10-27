@@ -56,7 +56,7 @@ def main(argv=None):
         if not manifest.exists() or manifest.read_text(encoding="utf-8") != expected:
             raise ValueError("Release checksum manifest differs; regenerate before packaging")
     else:
-        manifest.write_text(expected, encoding="utf-8")
+        manifest.write_bytes(expected.encode("utf-8"))
     skill = ROOT / ".agents/skills/judgment-preserver/SKILL.md"
     if skill.read_bytes() != (ROOT / "distribution/judgment-preserver-v0.2-SKILL.md").read_bytes():
         raise ValueError("Portable Skill distribution copy is out of sync")
