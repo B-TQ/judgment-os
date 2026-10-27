@@ -1,10 +1,68 @@
 # Community drafts / 社区发布草稿
 
-Maintainer drafts, not posted. Check each community's current rules before posting; these are not invitations to mass-submit. No endorsements, user counts or votes are implied. Replace no placeholders: the repository link below is the intended actual launch destination.
+Maintainer drafts, not posted. Check each community's current rules before posting; these are not invitations to mass-submit. No endorsements, user counts or votes are implied. The repository below is public. Use one channel-specific draft and disclose maintainership.
 
 维护者草稿，未发布。发帖前阅读各社区当日规则，按问题相关性选渠道，不集中刷屏。没有虚构用户、反馈或投票。
 
 Project: https://github.com/B-TQ/judgment-os
+
+## Recommended first posts after presentation maintenance / 展示优化后优先选用
+
+These are replacement choices, not extra posts to publish alongside every earlier draft. The example below is conceptual. Keep the observed limited result in the post. / 以下供替换选用，不是要求多发一轮广告；概念图不能当实验结果。
+
+### First choice: X / Twitter
+
+Your agent needs a short incident notice. Its Skill suggests a full postmortem. Does the default still fit?
+
+Judgment OS pairs optional task-fit guidance with offline evaluation. The full Skill is still experimental.
+
+https://github.com/B-TQ/judgment-os
+
+Attach `assets/skill-fit.png`, retaining its “concept illustration” label. For technical follow-up, explain the recorded C–D 1 win / 7 ties and the one-word-overrun win. Do not imply the pictured notice was measured.
+
+### Show HN
+
+**Title:** Show HN: Judgment OS – test when an agent Skill's defaults fit the task
+
+I maintain Judgment OS, an optional prompt-level Skill plus a small offline Python evaluation toolkit. The motivating question is concrete: if a user needs a short phone notice and a domain Skill suggests a full report, which parts are optional and which requirements stay binding? Our README illustration is conceptual, not a model result.
+
+The actual toolkit freezes the same requirements across task-only, domain guidance, full core and one-sentence reminder, then keeps genuine outputs, failed gates and review phases separate. The recorded eight-case follow-up did not justify making the full core a default: 1 win and 7 ties against the reminder, with the win due to one word over budget. The offline walkthrough needs Python 3.11+ and no API key. I'd value a fictional counterexample or a report on the two entry points: https://github.com/B-TQ/judgment-os .
+
+### V2EX
+
+**标题：** 用户只要一份短通知，AI 却套完整复盘模板：我想验证 Skill 的默认做法何时不适用
+
+Skill 里的一套流程大多时候可能有用，但“专业建议”不一定等于这次必须照搬的交付格式。比如用户只要手机上能读完的故障通知，领域 Skill 推荐的却是完整复盘。这是概念例子，不是我跑出的一组前后效果。
+
+我维护的 Judgment OS 有两个入口：可选元 Skill 提醒在硬要求内考虑适配；离线工具负责固定四组、检查回答、分开评审。原有八题研究没有证明完整核心普遍优于一句提醒：1 胜 7 平，唯一胜出来自对方超限一个词，所以没有设成默认。
+
+最近只整理了中英首页、概念图、安装与评测入口，没有升级核心或包装新成绩。Python 3.11+，不需要密钥就能看离线工具演示。项目：https://github.com/B-TQ/judgment-os 。我是维护者，欢迎用虚构输入讲一个具体反例；别贴私密日志。发帖前选适合节点并核对自荐规则。
+
+### 掘金
+
+**标题：** Skill 的默认模板什么时候该调整？用一个可选元 Skill 和四组评测拆开看
+
+用户要短通知，领域指导推荐完整复盘。问题不在于哪种格式更高级，而在于模板是否可选，以及事实、权限、审批等要求是否仍被守住。这是本项目首页的概念示例，没有冒充模型前后输出。
+
+Judgment OS 把“指导意图”和“效果检验”分成两个入口：想试元 Skill，可预览、项目内安装并安全撤回；想验证指导，固定 A 原始任务、B 领域 Skill、C 完整核心、D 一句提醒，保留失败、匿名评审和轮次差异。
+
+离线先跑 `python judgment.py doctor` 和 `python judgment.py demo --out runs/article-demo`，无需 API key。安装 Python 3.11+，从 https://github.com/B-TQ/judgment-os 下载源码并进入根目录即可。
+
+现有八题中 C–D 为 1 胜 7 平，唯一胜出是字数门槛差一词；不能因此宣称推理增强。完整核心继续可选，独立人工效用与跨模型复验仍未完成。正文建议依次讲可选与强制的边界、两条入口、实际检查及负面结果，配 `assets/skill-fit.zh-CN.png` 和已有架构图。披露维护者身份，不写成第三方评测。
+
+### 小红书技术向
+
+**标题：** 只想让 AI 写短通知，它却交了份完整复盘？
+
+Skill 装多了，有时会碰到一种别扭：可选模板被套到每个任务里。但这个感受不能直接证明 AI 变笨了，再加一段长提示词也未必有用。
+
+我做的 Judgment OS 提供两个入口：试一个可撤回的元 Skill，或用离线工具比较指导。图里的短通知只是概念，不是真实前后效果。真正已有的八题结果是：完整核心对一句提醒 1 胜 7 平，唯一胜出还是对方多写了一个词。因此它没有被设成默认。
+
+最近更新的是中英首页和上手导航，版本仍是 v0.7。Python 3.11+，不用密钥可看离线演示。项目：GitHub 的 B-TQ/judgment-os。我是维护者，更想听到一个具体反例，公共评论请用虚构数据。
+
+配图顺序：`hero.zh-CN-mobile.png` 作封面 → `skill-fit.zh-CN-mobile.png` 保留“概念演示”标签 → 原架构图。不要贴“智能恢复”“前后暴涨”等标签，不索要集中刷 Star。
+
+---
 
 ## A. X / Twitter
 

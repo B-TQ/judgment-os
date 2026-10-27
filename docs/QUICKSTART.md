@@ -1,5 +1,9 @@
 # Five-minute local quickstart
 
+[中文](QUICKSTART.zh-CN.md) · [Documentation map](README.md) · [Use the optional Skill instead](USAGE_DECISION.md#english)
+
+This page covers the evaluation toolkit. For the optional Skill's preview/install/invoke/remove path, use the guide above. These are separate entry points; offline evaluation does not install the Skill or authorize model calls.
+
 Use Python 3.11+. Download the source ZIP or clone this repository, open its root directory, and run these commands. Nothing needs pip installation and no API key is required. Use `python3` if that is your interpreter name.
 
 ```sh
@@ -9,6 +13,8 @@ python judgment.py check --case Q01 --answer examples/quickstart/correct.json
 ```
 
 The tutorial freezes eight empty A/B/C/D slots and writes `runs/tutorial-01/START_HERE.md` plus `demo_summary.json`. It checks two clearly labeled software fixtures: one passes, one intentionally fails. It creates **zero model answers and zero ratings**. The example is a software walkthrough, not method-performance data. Repeating the tutorial requires a fresh output directory.
+
+For an automatic fresh-directory walkthrough, use `python scripts/try_demo.py`. Windows users with Python installed can double-click `TRY_DEMO.cmd`. These shortcuts run doctor, demo and the correct-answer check only. They change no global settings.
 
 To see a real failure exit code:
 

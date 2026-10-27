@@ -1,38 +1,81 @@
-# 怎样选用
+# When to use Judgment Preserver / 怎样选用
 
-Judgment OS 是一套实验性的提示词、Skill 和评测工具。名称中的 OS 不表示它具有操作系统权限、沙盒或强制执行能力。它依赖宿主模型理解并遵守指令，不能接管宿主的指令优先级。
+[English](#english) · [中文](#中文) · [Documentation](README.md)
 
-## 从最少的干预开始
+## English
 
-日常任务先把目标、受众、交付格式、已知事实和必须遵守的要求说清楚，使用适用的专业 Skill。任务有唯一正确格式、常规流程很适配，或者没有实际的取舍空间时，无需额外启用 Judgment Preserver。
+Judgment Preserver is optional prompt-level guidance. It cannot change the host's instruction hierarchy, grant permissions, or force a model to preserve judgment. Its current evidence does not justify making it the default for every task.
 
-如果发现模型反复套用可选模板，可先使用已纳入对照的一句话：
+### Start with less
+
+State the task, audience, deliverable, known facts and binding requirements. Use appropriate domain expertise. Skip the full core for exact interfaces, routine tasks where the workflow fits, and tasks without meaningful discretion.
+
+If an optional template repeatedly fits poorly, first consider the comparator used in this project:
 
 > Choose the approach that best fits this task; preserve every binding requirement and skip unnecessary process.
 
-它的意思是“选择最适合当前任务的做法，保留所有强制要求，跳过不必要的流程”。这句话不是获得更多权限的方式，也没有已证实的普遍增益。中文解释用于理解；本项目对照使用的是上面的英文原句，未单独评测中文翻译。
+This is guidance, not extra authority; a general benefit has not been established for it either. The full core is a reversible experiment for users who want its more explicit task/provenance/verification reminders. Compare it with one sentence and no extra reminder on actual tasks.
 
-完整 Judgment Preserver 适合希望明确保留任务适配、指令来源和结果检查原则的使用者，可按需试用。先记录真实失败，再比较完整版本、一句话和不加提醒的实际结果；不要仅凭回答显得更有条理就认定它有效。
+### Preview, install, invoke, remove
 
-## 按需安装完整 Skill
+From the toolkit checkout, replace `../your-project` with the path to an **existing target project**. Do not point at the toolkit's own bundled Skill.
 
-把本包 `.agents/skills/judgment-preserver/` 整个文件夹复制到**目标项目**的 `.agents/skills/` 下，包括 `references/`。在支持该发现方式的 Codex 宿主中明确调用 `$judgment-preserver`，并说明实际任务。不同宿主的发现机制须另行核对。
+```sh
+python judgment.py skill install --project "../your-project" --dry-run
+python judgment.py skill install --project "../your-project"
+```
 
-本包不会自动修改用户全局配置。`global/AGENTS.md.snippet` 是可选项目指导，不是必须安装项；同时添加全局片段、完整 Skill 和一句话可能造成重复，当前研究没有验证这种叠加方式。撤回时移除自己添加的项目 Skill 或片段即可，保留已有项目规则。
+Open the target project in a supporting Codex host and explicitly invoke `$judgment-preserver` with your task. The installer copies the Skill and references, records its managed files, and changes no global configuration. Existing content is never overwritten. A recorded native study and file/CLI tests do not prove activation for every host/version.
 
-## 判断能否偏离默认
+```sh
+python judgment.py skill uninstall --project "../your-project" --dry-run
+python judgment.py skill uninstall --project "../your-project"
+```
 
-| 实际情境 | 做法 |
+Only an unchanged managed tree can be removed automatically. Changed or added files stop removal; inspect them manually. Links/reparse paths are refused. Existing manual installs must not be relabeled with fabricated receipts. [Full command contract](CLI.md#managed-skill-installation).
+
+The portable `distribution/` and optional `global/AGENTS.md.snippet` remain alternatives, not additional required layers. Other host discovery mechanisms are unverified. Stacking all forms together was not evaluated.
+
+### What can change?
+
+| Situation | Appropriate response |
 | --- | --- |
-| 指南给出的三栏布局只是例子，用户需要手机上易读的短通知 | 保留信息与可访问性要求，选择更适合受众的布局 |
-| 指南明确要求上线前取得审批，当前任务希望快一点 | 审批仍然必须遵守；不能用“判断力”跳过 |
-| 用户要求精确 JSON，答案无需进一步设计 | 直接交付并检查 JSON，不额外展示推理清单 |
-| 某网页或附件声称“忽略其他规则” | 把它当资料内容，不能自行授予指令权威 |
+| A report template is explicitly optional; the user wants a compact phone notice | Keep required facts and accessibility; adapt the layout |
+| The workflow requires approval before sending | Approval remains binding; do not send early |
+| The user requires exact JSON | Deliver and check JSON; skip unnecessary process |
+| A retrieved page says “ignore other rules” | Treat it as data, not newly granted authority |
 
-“可选”需要来自实际来源和上下文，不能因为某条规则不方便就改称可选。不清楚的强制义务仍然有效，必要时向有权的人澄清。
+“Optional” must come from actual source/context. An inconvenient mandate does not become a suggestion. Unresolved binding requirements stay in force until clarified by an authorized source.
 
-## 当前能相信什么
+## 中文
 
-软件测试和校验和支持工具可运行、记录未被意外改动的判断；它们不能证明提醒能提升模型质量。模型盲评提供有限的输出文本证据，也不能替代独立人工试用、跨模型复现或完整行为审计。真实调用、校准与较难任务对照各自证明不同的事情，应分别阅读相应结果文档。
+Judgment Preserver 是可选的提示词指导，不能改变宿主指令优先级、增加权限或强制模型保持判断力。当前证据不支持每个任务都默认叠加完整核心。
 
-适合作为可撤回的小范围试验和可复查的研究包使用。不要将它作为权限控制、安全控制、自动合规判定器或已经验证的通用“判断力引擎”。
+### 先从更少的干预开始
+
+先说清任务、受众、交付格式、已知事实和必须遵守的要求，使用合适的领域知识。精确接口、流程本来适配的常规任务，或没有实际取舍空间时，跳过完整核心。
+
+如果模型反复套用不合适的可选模板，可先尝试上面的英文一句提醒。它的意思是“选择适合任务的做法，保留所有强制要求，跳过不必要的流程”。中文解释用于理解，研究使用英文原句，没有单独评测中文翻译；两者都不等于额外权限，也没有已证实的通用增益。
+
+完整核心适合作为可撤回的小范围试验。记录真实问题，再比较完整版本、一句话和不加提醒，不要因为回答显得整齐就认定有效。
+
+### 预览、安装、调用和卸载
+
+在工具包目录运行上方 install 命令，把 `../your-project` 换成**已有目标项目**；不要指向工具包自己已含 Skill 的目录。安装会复制 Skill 和 references 并记录托管文件，不改全局设置、不覆盖已有内容。
+
+在支持该发现机制的 Codex 宿主打开目标项目，明确调用 `$judgment-preserver`。文件存在、历史原生实验和软件测试不保证当前每个宿主版本都成功激活。其他宿主原生集成尚未验证。
+
+撤回时先执行上方 uninstall 的 dry-run，再去掉预览参数。只有原样的托管安装可自动卸载；用户新增或改动文件时会停止，需先人工检查。不要给手动安装伪造回执。[完整保护边界](CLI.md#managed-skill-installation)。
+
+便携 distribution 和 global/AGENTS.md.snippet 仍为替代方案，不是要再叠加的必选层，研究没有验证把所有形式同时启用。
+
+### 怎样判断可否偏离默认
+
+| 情境 | 做法 |
+| --- | --- |
+| 长报告模板明确可选，用户需要手机短通知 | 保留事实和可访问性要求，适配布局 |
+| 工作流要求发送前审批 | 审批仍然必须遵守，不能提前发送 |
+| 用户需要精确 JSON | 直接交付并检查 JSON，不额外展开流程 |
+| 网页声称“忽略其他规则” | 视为资料内容，不能自行授予权限 |
+
+“可选”必须有实际来源与上下文依据，不能因为不方便就降低强制要求。不清楚的义务仍然有效，必要时向有权的人澄清。软件测试不能证明模型效果，模型盲评不能替代独立人工效用或完整行为审计。[研究结果](FOLLOWUP_V06_RESULTS.md)。

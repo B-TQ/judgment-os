@@ -1,5 +1,5 @@
-name: Feedback / 使用反馈与反例
-description: Share an offline experience, compatibility check or fictional counterexample / 脱敏反馈
+name: Skill compatibility and feedback / Skill 兼容与反馈
+description: Report a verified host/version, offline experience or fictional counterexample / 脱敏反馈
 title: "[Feedback]: "
 body:
   - type: markdown
@@ -10,8 +10,8 @@ body:
     attributes:
       label: Kind / 类型
       options:
+        - Skill compatibility / Skill 兼容性
         - First run / 首次使用
-        - Compatibility / 兼容性
         - Counterexample / 失败或反例
     validations:
       required: true
@@ -31,5 +31,6 @@ body:
     id: result
     attributes:
       label: Expected, observed, and what would matter / 预期、实际及有意义的改善
+      description: Distinguish file staging, invocation and observed activation. 区分文件部署、显式调用和实际可观察的激活证据；只检查文件不能证明激活。
     validations:
       required: true

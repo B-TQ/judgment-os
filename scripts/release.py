@@ -9,7 +9,7 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 TOP = ("README.md", "README.zh-CN.md", "CHANGELOG.md", "LICENSE", ".gitignore", ".gitattributes",
-       "AGENTS.md", "CONTRIBUTING.md", "CODE_OF_CONDUCT.md", "SECURITY.md", "judgment.py", "VERSION", "LAUNCH_REPORT.md", "TRY_DEMO.cmd")
+       "AGENTS.md", "CONTRIBUTING.md", "CODE_OF_CONDUCT.md", "SECURITY.md", "judgment.py", "VERSION", "LAUNCH_REPORT.md", "GITHUB_OPTIMIZATION_REPORT.md", "TRY_DEMO.cmd")
 DIRS = (".agents", ".github", "distribution", "docs", "evals", "examples", "global", "scripts", "tests", "legacy")
 SUFFIXES = {".md", ".txt", ".py", ".json", ".yml", ".yaml", ".snippet", ".cjs"}
 PRIVATE_DIRS = {"__pycache__", ".git", "runs", "review-exports", "artifacts", "traces", "workspaces", "judges", "paired_judges", "outputs", "prompts", "states", "review_packets"}

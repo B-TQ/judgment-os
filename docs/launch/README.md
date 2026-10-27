@@ -15,7 +15,8 @@ All community posts are drafts for the maintainer to publish manually. No commun
 | Release notes / 版本说明 | [RELEASE_v0.7.md](RELEASE_v0.7.md) |
 | Validation and privacy / 验证与隐私 | [VALIDATION.md](VALIDATION.md) |
 | Visual sources, exports and reproduction / 视觉源文件与重建 | [ASSETS.md](ASSETS.md) |
-| Final publication status / 最终发布状态 | [LAUNCH_REPORT.md](../../LAUNCH_REPORT.md) |
+| Original publication / 原发布记录 | [LAUNCH_REPORT.md](../../LAUNCH_REPORT.md) |
+| Current presentation maintenance / 本次展示优化 | [GITHUB_OPTIMIZATION_REPORT.md](../../GITHUB_OPTIMIZATION_REPORT.md) |
 
 Start with the source ZIP and three offline commands in the README. Keep the full Skill optional. Do not use software checks as evidence of model improvement.
 

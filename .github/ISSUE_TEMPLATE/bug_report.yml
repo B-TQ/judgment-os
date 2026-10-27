@@ -1,28 +1,28 @@
-name: Bug report
-description: Report reproducible tool behavior without private study data
+name: Bug report / 问题复现
+description: Report reproducible tool behavior without private study data / 请用虚构数据
 title: "[Bug]: "
 body:
   - type: input
     id: version
     attributes:
-      label: Tool version, Python version and OS
+      label: Tool version, Python version and OS / 工具、Python 与系统版本
     validations:
       required: true
   - type: textarea
     id: reproduce
     attributes:
-      label: Minimal command and fictional input
+      label: Minimal command and fictional input / 最小命令与虚构输入
       description: Remove local paths, credentials, personal data and raw private outputs.
     validations:
       required: true
   - type: textarea
     id: behavior
     attributes:
-      label: Expected and actual behavior
+      label: Expected and actual behavior / 预期与实际行为
     validations:
       required: true
   - type: textarea
     id: checks
     attributes:
-      label: Relevant error and validation result
+      label: Relevant error and validation result / 已脱敏的错误与检查结果
       description: Do not paste unredacted traces or account data.

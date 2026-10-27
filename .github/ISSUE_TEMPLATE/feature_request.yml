@@ -1,23 +1,23 @@
-name: Feature request
-description: Describe the real task and how success could be checked
+name: Feature request / 功能建议
+description: Describe the real task and how success could be checked / 具体任务与验收
 title: "[Feature]: "
 body:
   - type: textarea
     id: need
     attributes:
-      label: User task and current obstacle
+      label: User task and current obstacle / 用户任务与当前阻碍
     validations:
       required: true
   - type: textarea
     id: proposal
     attributes:
-      label: Proposed behavior and a simpler alternative
+      label: Proposed behavior and a simpler alternative / 建议行为与更简单的替代
     validations:
       required: true
   - type: textarea
     id: verification
     attributes:
-      label: How would we know this helps?
+      label: How would we know this helps? / 怎样验证确实有用？
       description: Distinguish software correctness from model-performance evidence.
     validations:
       required: true

@@ -1,1 +1,8 @@
 blank_issues_enabled: true
+contact_links:
+  - name: Questions and discussion / 提问与讨论
+    url: https://github.com/B-TQ/judgment-os/discussions/categories/q-a
+    about: Ask about use or interpretation; omit private data. 使用与解释问题，请勿附私密材料。
+  - name: Contributing / 贡献指南
+    url: https://github.com/B-TQ/judgment-os/blob/main/CONTRIBUTING.md
+    about: Local checks, focused contributions and evidence boundaries. 开发检查、贡献方式与证据边界。
