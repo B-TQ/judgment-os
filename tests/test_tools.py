@@ -15,6 +15,21 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class ToolTests(unittest.TestCase):
+    def test_launch_artwork_is_packaged_without_allowing_arbitrary_images(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            names = ("docs/launch/assets/preview.png", "docs/launch/assets/preview.svg",
+                     "docs/launch/assets/preview.html", "evals/private-output.png",
+                     "docs/launch/assets/review-exports/answer.png")
+            for name in names:
+                path = root / name
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_bytes(b"SOFTWARE PACKAGING FIXTURE")
+            with patch.object(release, "ROOT", root):
+                shipped = {p.relative_to(root).as_posix() for p in release.sources()}
+            self.assertTrue(set(names[:3]).issubset(shipped))
+            self.assertTrue(set(names[3:]).isdisjoint(shipped))
+
     def test_demo_cli_has_no_outputs_or_scores(self):
         with tempfile.TemporaryDirectory() as td:
             out = Path(td) / "demo"

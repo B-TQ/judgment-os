@@ -1,4 +1,9 @@
-# v0.7 — GitHub-ready source release candidate
+# v0.7 — GitHub source release
+
+- Reworked English/Chinese entry points around the offline workflow and limited evidence; added a Chinese quickstart and bilingual contribution/security guidance.
+- Added original social/architecture/fixture-demo artwork with editable sources and optional renderer, manual launch drafts and a first-month plan.
+- Included artwork only from the reviewed launch directory in source packaging, with a regression check excluding arbitrary study images. Preserved core Skill bytes, historical results and Git history.
+- No new model efficacy run; remote verification and publication status are recorded in LAUNCH_REPORT.md.
 
 - Added one dependency-free public entry point: offline doctor/tutorial, single-answer checks, routed study/review commands and explicit report-phase selection.
 - Added managed project-local Skill install/uninstall with dry-run, overwrite refusal and preservation of user edits/additions.
@@ -22,6 +27,13 @@
 ---
 
 # Changelog
+
+## v0.7 launch preparation — 2026-10-27
+
+- Reworked English/Chinese entry points around the offline workflow and limited evidence; added a Chinese quickstart and bilingual contribution/security guidance.
+- Added original social/architecture/fixture-demo artwork with editable sources and a reproducible optional renderer, plus manual launch drafts and a first-month plan.
+- Included launch materials in the source allowlist without allowing arbitrary image exports elsewhere. Preserved core Skill bytes, historical results and Git history.
+- No new model efficacy run; remote verification and publication status live in LAUNCH_REPORT.md.
 
 ## v0.5 — 2026-10-27
 

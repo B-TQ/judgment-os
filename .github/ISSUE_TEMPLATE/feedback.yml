@@ -1,0 +1,35 @@
+name: Feedback / 使用反馈与反例
+description: Share an offline experience, compatibility check or fictional counterexample / 脱敏反馈
+title: "[Feedback]: "
+body:
+  - type: markdown
+    attributes:
+      value: "Maintainer feedback form. Use fictional data; omit tokens, personal paths and private outputs. 请用虚构数据，不贴凭据、私人路径或真实私密回答。"
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind / 类型
+      options:
+        - First run / 首次使用
+        - Compatibility / 兼容性
+        - Counterexample / 失败或反例
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Version, Python, OS and host / 版本与环境（不含个人路径）
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Minimal fictional task and commands / 虚构最小任务与命令
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Expected, observed, and what would matter / 预期、实际及有意义的改善
+    validations:
+      required: true

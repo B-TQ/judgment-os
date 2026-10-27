@@ -1,6 +1,6 @@
 # Publishing the prepared repository
 
-The v0.7 source is a local release candidate. Preparing it does not create a remote repository, run GitHub Actions, or publish any data. The local release branch is ready to review; remote owner/name/visibility are user choices.
+This is the publishing procedure. For actual publication status, repository URL, remote CI and release assets, see [LAUNCH_REPORT.md](../LAUNCH_REPORT.md). Preparing source alone does not create a remote repository, run GitHub Actions, or publish data. The launch mission separately authorized a public repository and v0.7 release.
 
 ## Before the first push
 

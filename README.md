@@ -1,68 +1,123 @@
 # Judgment OS
 
-**Check agent outputs. Compare Skill guidance. Keep the evidence honest.**
+**Test what your agent's Skills actually change.**
 
-Judgment OS is a small, offline-first evaluation toolkit for people building Agent Skills and prompts. It provides deterministic answer checks, frozen A/B/C/D studies, controlled live collection and separately re-keyed model-review packets. An optional experimental Skill, Judgment Preserver, is included as a case study.
+*Your agent got more Skills. Does every default still fit the task?*
 
-**Current release: 0.7 · Python 3.11+ · standard library only · MIT.** No pip installation, API key or model call is needed for offline use.
+Judgment OS is an offline-first evaluation toolkit for Agent Skill and prompt developers. Compare task-only, domain guidance, an experimental meta-Skill, and a one-sentence reminder under the same requirements. Keep failures and review limitations visible.
 
-[中文](README.zh-CN.md) · [Quickstart](docs/QUICKSTART.md) · [Commands](docs/CLI.md) · [Evidence](docs/FOLLOWUP_V06_RESULTS.md) · [Contributing](CONTRIBUTING.md)
+**v0.7 · Python 3.11+ · standard-library runtime · MIT**
 
-## Try it in five minutes
+[中文](README.zh-CN.md) · [Download v0.7](https://github.com/B-TQ/judgment-os/releases/tag/v0.7) · [Walkthrough](docs/QUICKSTART.md) · [Commands](docs/CLI.md) · [Evidence](docs/launch/EVIDENCE.md)
 
-Download the source ZIP or clone the repository, then open its root directory:
+![Judgment OS: Skills should expand intelligence, not constrain it](docs/launch/assets/social-preview.png)
+
+## See a real check
+
+Three orders: 4 paid, 7 paid, 9 cancelled. The required result is `{"total":11,"count":2}`. The bundled incorrect answer includes the cancelled order; the validator rejects it. The correct fixture passes.
+
+![Actual offline validator outcomes for labeled software fixtures](docs/launch/assets/demo.png)
+
+These are **authored software fixtures, not before/after model generations**. They show the checker working, not the meta-Skill improving an agent. [Reproduce both exits](docs/launch/DEMO.md).
+
+## Quick start: three offline commands
+
+Download and extract the [source ZIP](https://github.com/B-TQ/judgment-os/releases/tag/v0.7), or:
 
 ```sh
+git clone https://github.com/B-TQ/judgment-os.git
+cd judgment-os
 python judgment.py doctor
-python judgment.py demo --out runs/tutorial-01
+python judgment.py demo --out runs/first-demo
 python judgment.py check --case Q01 --answer examples/quickstart/correct.json
 ```
 
-The tutorial prepares **8 empty study slots** and checks two bundled software fixtures: one passes, one intentionally fails. It produces no model answers, ratings or performance claim. Read the generated `START_HERE.md` for the next step. On systems where Python is called `python3`, use that name instead. Choose a fresh output directory on repeat.
+No pip install, account or API key is needed. Use `python3` if that is your Python 3.11+ command. The demo creates **8 empty A/B/C/D slots**, checks two fixtures and makes **zero model calls**. It does not invent answers or scores. On repeats choose a fresh output directory. Read the generated `START_HERE.md` for next steps.
 
-To inspect an intentional failure:
+On Windows with Python installed, double-click [TRY_DEMO.cmd](TRY_DEMO.cmd) to run these steps with a fresh output directory automatically. On any supported OS, `python scripts/try_demo.py` offers the same offline shortcut. The launcher only runs the three commands above.
+
+To see the intentional failure:
 
 ```sh
 python judgment.py check --case Q01 --answer examples/quickstart/incorrect.json
 ```
 
-It exits 1 because the example counts a cancelled order. See the [full walkthrough](docs/QUICKSTART.md) for genuine collection and review.
+Exit 1 is expected. A deterministic pass covers only the declared text properties.
 
-## What it helps with
+## Why compare guidance?
 
-- Check declared JSON/CSV/text/length properties without calling a model.
-- Compare task-only, domain Skill, full core and one-sentence guidance under common binding requirements.
-- Keep original outputs, provenance, hashes, failures and blinded reviewer exports separate.
-- Preserve reviewer disagreements and analyze review phases explicitly, without turning extra judges into extra task samples.
-- Install the optional project-local Skill and remove an unchanged managed installation safely.
+A Skill's optional workflow or template can be a poor fit for a particular task. That is a testable possibility, not evidence that Skills generally make agents less capable. Adding another long prompt may also add no useful benefit.
 
-Live collection is off by default. The native adapter needs Codex CLI and Git, explicit live flags, an actual model name and the user's authorization. Other genuine outputs can be imported with declared provenance. A read-only sandbox is not privacy isolation.
+Judgment OS separates the idea from the evidence: freeze common requirements, collect genuine outputs, check declared properties, re-key review packets, and report failures and disagreements. The optional **Judgment Preserver** asks the agent to preserve binding requirements while adapting genuinely optional defaults. It is prompt guidance, not an instruction-policy engine.
+
+| Condition | Guidance |
+| --- | --- |
+| A | Task only |
+| B | Task + domain Skill |
+| C | B + full Judgment Preserver |
+| D | B + one-sentence task-fit reminder |
+
+## What v0.7 provides
+
+- Deterministic JSON, CSV, fixed-text, heading, line and whitespace-word checks.
+- Frozen cases, common hard gates, prompt hashes and seeded study preparation.
+- Dry-run-first Codex collection, or genuine external answer import with declared provenance.
+- Re-keyed review exports, hash-bound imports and explicit review-phase selection.
+- Reports retaining missing/failed runs, gate failures and reviewer disagreement.
+- Project-local optional Skill installation with preview, overwrite refusal and guarded removal.
+
+![Implemented evaluation workflow, with optional instruction guidance distinguished](docs/launch/assets/architecture.png)
+
+[Implementation and non-goals](docs/architecture.md) · [Audited feature status](docs/launch/AUDIT.md)
 
 ## What the evidence says
 
-The included full Skill has **not established a general advantage over a one-sentence reminder**. In the eight-case v0.6 follow-up, the comparison was 1 win / 7 ties; the win came from a one-word budget overrun. Initial review-context leakage was disclosed and corrected with a separate projectless review phase. Both phases are retained. This is model-only, small-sample evidence, not equivalence or independent human validation.
+The full meta-Skill **has not established a general advantage over a one-sentence reminder**. In the eight-case v0.6 follow-up, C versus D was **1 win / 7 ties / 0 losses**. The only win came from D exceeding a word limit by one word. The predeclared adoption threshold was not met, so the full Skill stays optional.
 
-The tool's software checks and the optional Skill's efficacy are separate questions. [Read the result and limitations](docs/FOLLOWUP_V06_RESULTS.md). Start with clear requirements and appropriate domain guidance; use the full Skill selectively. [Usage decision](docs/USAGE_DECISION.md).
+The initial model reviews had incidental exposure to other-chat summaries. Those reviews were preserved; a corrective projectless review phase used the same unchanged outputs and reached the same pairwise result. Both phases are reported separately. This is small-sample, model-only evidence, not independent human validation or proof of equivalence.
 
-## Optional Skill
+[English evidence and replication limits](docs/launch/EVIDENCE.md) · [Detailed original results / 中文](docs/FOLLOWUP_V06_RESULTS.md) · [Protocol](docs/STUDY_PROTOCOL_V06.md)
+
+## Optional Skill: install, preview, remove
 
 ```sh
 python judgment.py skill install --project /path/to/existing/project --dry-run
 python judgment.py skill install --project /path/to/existing/project
+python judgment.py skill uninstall --project /path/to/existing/project --dry-run
+python judgment.py skill uninstall --project /path/to/existing/project
 ```
 
-Quote paths containing spaces. Explicitly invoke `$judgment-preserver` in a supporting Codex host. No global configuration is changed. Installation refuses an existing Skill; uninstall refuses changed or added files. See [installation and removal](docs/CLI.md#managed-skill-installation). The core text remains the v0.2 content; 0.7 versions the toolkit.
+Replace the example path with an existing project; quote paths containing spaces. In a supporting Codex host, explicitly invoke `$judgment-preserver`. Existing Skills are never overwritten. Removal refuses modified or added files. The core text remains v0.2; v0.7 versions the toolkit. [Details](docs/CLI.md#managed-skill-installation).
 
-## Development and release
+## Compatibility and limits
+
+| Environment | Verified scope |
+| --- | --- |
+| Python 3.11 / 3.14, Windows / Linux | Offline CI matrix; see the actual [Actions results](https://github.com/B-TQ/judgment-os/actions/workflows/ci.yml) |
+| Codex native adapter | Local staging/tests and prior recorded native study; checks required CLI flags before a live call |
+| Claude Code and other hosts | No native adapter or end-to-end compatibility verification in v0.7; external answer import is available |
+
+Live collection requires Codex CLI, Git, an explicit model and explicit live/cost flags plus your authorization. It can use account quota. A read-only sandbox is not privacy isolation. Pattern redaction is incomplete: inspect exports before sharing. File presence does not prove Skill activation. No automatic constraint classifier, signed policy resolver or host-integrated orchestrator is implemented.
+
+## Contribute and next steps
+
+Start with a fictional minimal repro, a compatibility report or a counterexample. Planned work includes independent human utility review, held-out tasks, cross-model replication and better installation feedback. None has been completed by this launch.
 
 ```sh
 python -B -m unittest discover -s tests -v
+python -B scripts/audit_skills.py .agents/skills/judgment-preserver/SKILL.md --strict-metadata
 python -B judgment.py selftest --out runs/pipeline-smoke
 python -B judgment.py release --check
 ```
 
-[Contributing](CONTRIBUTING.md) · [Security](SECURITY.md) · [Community conduct](CODE_OF_CONDUCT.md) · [Publishing checklist](docs/PUBLISHING.md) · [Changelog](CHANGELOG.md)
+[Contributing EN / 中文](CONTRIBUTING.md) · [Security EN / 中文](SECURITY.md) · [Roadmap](docs/ROADMAP.md) · [Launch kit EN / 中文](docs/launch/README.md) · [Changelog](CHANGELOG.md) · [Launch report](LAUNCH_REPORT.md) · [MIT License](LICENSE)
 
-CI is configured for Windows/Linux and Python 3.11/3.14. Local checks do not imply a successful remote Actions run. No CI badge is asserted before a real repository run exists. The manual artifact workflow only builds source; it does not publish a GitHub Release or private research data.
+## FAQ
 
-Advanced compatible scripts remain under scripts/. Historical v0.2 source is preserved in legacy/, and old handoff documents are in docs/history/; their instructions do not authorize current actions. Source packaging excludes private runs and review records. Inspect all artifacts before sharing. See [release scope](docs/V0.7_STATUS.md) for tested boundaries.
+**Is this an operating system or agent framework?** No. The name describes the research direction; v0.7 is a Python source-checkout toolkit with an optional instruction Skill.
+
+**Will it make my agent smarter?** That has not been established. Compare on your tasks; a shorter reminder may be enough.
+
+**Is this the only project evaluating Skills?** No. [SkillsBench](https://github.com/benchflow-ai/skillsbench) and [Skill Eval Harness](https://github.com/adewale/skill-eval-harness) also work on Skill evaluation. We do not claim unique evaluation mechanics or superiority. [Context](docs/launch/POSITIONING.md).
+
+**Can I reproduce the historical numbers from public source alone?** You can reproduce preparation and checks. Raw historical answers, private review maps and account traces are not published, so the complete reported model judgments cannot be independently recomputed from this source release alone.

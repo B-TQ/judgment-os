@@ -9,9 +9,9 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 TOP = ("README.md", "README.zh-CN.md", "CHANGELOG.md", "LICENSE", ".gitignore", ".gitattributes",
-       "AGENTS.md", "CONTRIBUTING.md", "CODE_OF_CONDUCT.md", "SECURITY.md", "judgment.py", "VERSION")
+       "AGENTS.md", "CONTRIBUTING.md", "CODE_OF_CONDUCT.md", "SECURITY.md", "judgment.py", "VERSION", "LAUNCH_REPORT.md", "TRY_DEMO.cmd")
 DIRS = (".agents", ".github", "distribution", "docs", "evals", "examples", "global", "scripts", "tests", "legacy")
-SUFFIXES = {".md", ".txt", ".py", ".json", ".yml", ".yaml", ".snippet"}
+SUFFIXES = {".md", ".txt", ".py", ".json", ".yml", ".yaml", ".snippet", ".cjs"}
 PRIVATE_DIRS = {"__pycache__", ".git", "runs", "review-exports", "artifacts", "traces", "workspaces", "judges", "paired_judges", "outputs", "prompts", "states", "review_packets"}
 PRIVATE_FILES = {"private_condition_map.json", "protocol.json", "cases_snapshot.json", "skill_snapshot.json",
                  "adapter_plan.json", "cli_probe.json", "validation.json", "report.json", "report.md", "ratings.csv",
@@ -31,6 +31,10 @@ def sources():
         paths.extend(p for p in (ROOT / name).rglob("*") if p.is_file()
                      and (p.suffix in SUFFIXES or p.name in (".gitignore", "LICENSE"))
                      and public_source(p))
+    # Artwork is public only in this reviewed directory, not arbitrary study exports.
+    assets = ROOT / "docs/launch/assets"
+    paths.extend(p for p in assets.rglob("*") if p.is_file()
+                 and p.suffix in {".svg", ".html", ".png"} and public_source(p))
     return sorted(set(paths), key=lambda p: p.relative_to(ROOT).as_posix())
 
 
