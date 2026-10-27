@@ -47,13 +47,18 @@ def demo(out, cli=None):
     return summary
 
 
-if __name__ == "__main__":
+def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--out", required=True)
     parser.add_argument("--cli")
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
     try:
         demo(args.out, args.cli)
     except (ValueError, OSError, AssertionError) as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
-        sys.exit(1)
+        return 1
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

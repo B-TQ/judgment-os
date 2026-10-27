@@ -1,0 +1,23 @@
+name: Feature request
+description: Describe the real task and how success could be checked
+title: "[Feature]: "
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: User task and current obstacle
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior and a simpler alternative
+    validations:
+      required: true
+  - type: textarea
+    id: verification
+    attributes:
+      label: How would we know this helps?
+      description: Distinguish software correctness from model-performance evidence.
+    validations:
+      required: true

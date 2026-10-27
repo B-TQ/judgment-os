@@ -1,24 +1,33 @@
-name: Validate prototype
+name: Offline checks
 on:
   push:
   pull_request:
+permissions:
+  contents: read
+concurrency:
+  group: offline-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
-  unit-tests:
+  checks:
+    timeout-minutes: 10
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
         python: ['3.11', '3.14']
     runs-on: ${{ matrix.os }}
+    env:
+      PYTHONUTF8: '1'
+      PYTHONDONTWRITEBYTECODE: '1'
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
           python-version: ${{ matrix.python }}
-      - name: Unit tests (stdlib only)
-        run: python -m unittest discover -s tests -v
-      - name: Validate local Skill manifest
-        run: python scripts/audit_skills.py .agents/skills/judgment-preserver/SKILL.md --strict-metadata
-      - name: Offline demo (no credentials or model calls)
-        run: python scripts/demo.py --out runs/ci-demo
-      - name: Validate release files and checksum manifest
-        run: python scripts/release.py --check
+      - run: python judgment.py doctor
+      - run: python -m unittest discover -s tests -v
+      - run: python scripts/audit_skills.py .agents/skills/judgment-preserver/SKILL.md --strict-metadata
+      - run: python judgment.py demo --out runs/ci-tutorial
+      - run: python judgment.py selftest --out runs/ci-smoke
+      - run: python judgment.py release --check
+      - run: git diff --exit-code

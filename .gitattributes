@@ -1,0 +1,9 @@
+* text=auto
+*.py text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+legacy/** -text
+.agents/skills/judgment-preserver/** -text
+distribution/judgment-preserver-v0.2-SKILL.md -text

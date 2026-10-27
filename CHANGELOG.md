@@ -1,3 +1,14 @@
+# v0.7 — GitHub-ready source release candidate
+
+- Added one dependency-free public entry point: offline doctor/tutorial, single-answer checks, routed study/review commands and explicit report-phase selection.
+- Added managed project-local Skill install/uninstall with dry-run, overwrite refusal and preservation of user edits/additions.
+- Added a small labeled software tutorial with eight empty slots and no invented model answers or ratings.
+- Added bilingual product documentation, CLI/quickstart/publishing guides, contributor/conduct/security policies and issue/PR templates. Moved historical handoff text out of the root.
+- Hardened CI permissions and added a manual source-artifact workflow. No remote run or publication is implied.
+- Kept the experimental core and v0.6 evidence unchanged; this release improves usability and engineering, not claimed model efficacy.
+
+---
+
 # v0.6 — 2026-10-27
 
 - Added eight independently authored self-contained work cases and a fixed 32-attempt native follow-up with no case replacement or rerolls.

@@ -1,57 +1,66 @@
-# Judgment OS v0.6
+# Judgment OS
 
-一个实验性的任务适配 Skill 和可复查评测工具包。它帮助表达“保留专业知识和强制要求，同时按任务选择合适的做法”，不提供操作系统权限或强制执行能力。
+**检查 Agent 输出，比较 Skill 指导，保留可复查的证据。**
 
-先看 [怎样选用](docs/USAGE_DECISION.md)。日常任务先用清晰需求与适用的专业 Skill；完整 Judgment Preserver 按需试用。核心正文自 v0.2 保持不变，尚无足够证据证明它普遍优于一句简短提醒。
+这是给 Agent Skill 和提示词开发者使用的轻量评测工具。支持确定性检查、冻结四组对照、真实输出收集、重新编号的模型评审和分轮报告。附带的 Judgment Preserver 是可选实验 Skill，不承诺通用判断力提升。
 
-## 本版新增
+当前版本 **0.7**，要求 Python 3.11+，仅使用标准库，MIT 许可。离线功能不需要 pip 安装、API 密钥或模型调用。
 
-- 八道独立编写的较难任务：四道默认不完全适配、两道默认适配、两道精确控制；固定 A/B/C/D 四组，一题每组一次。
-- 两轮、每轮两次分别随机编号和排序的同题盲评，分开判断硬约束、0–4 任务专属质量刻度和成对偏好，保留分歧。
-- 完整导出/导入校验、私密研究资料隔离、按版本不可覆盖的源码与证据备份。
+[English](README.md) · [完整上手](docs/QUICKSTART.md) · [命令参考](docs/CLI.md) · [研究结果](docs/FOLLOWUP_V06_RESULTS.md)
 
-阅读 [本版结果](docs/FOLLOWUP_V06_RESULTS.md)、[事前设计](docs/STUDY_PROTOCOL_V06.md)、[当前状态](docs/V0.6_STATUS.md)。历史的 [三题试验](docs/PILOT_V04_RESULTS.md) 和 [明显缺陷校准](docs/CALIBRATION_V05_RESULTS.md) 各自证明不同的事情，不合并为性能提升证据。
+## 五分钟试用
 
-## 先试用最少的干预
+下载源码 ZIP 或克隆仓库，打开源码根目录：
 
-可直接使用 [一句提醒](examples/minimal-reminder.txt)。若要试用完整 Skill，将 `.agents/skills/judgment-preserver/` 整个文件夹复制到目标项目同名位置，保留 references，再在支持该发现方式的 Codex 中明确调用 `$judgment-preserver`。不需要安装 Python 来使用这段 Skill，也不需要修改全局设置。
+```powershell
+python judgment.py doctor
+python judgment.py demo --out runs/tutorial-01
+python judgment.py check --case Q01 --answer examples/quickstart/correct.json
+```
 
-强制要求与权限始终有效；不能因为某条规则不便就称其为“可选”。具体适用边界和撤回方式见使用指南。额外全局片段是可选资料，不建议未经对照就同时叠加多个提醒。
+演示准备8个空实验槽位，并检查两份明确标注的软件示例：一份通过、一份预期失败。**不生成模型回答、评分或性能结论。**生成的 START_HERE.md 会说明下一步。重复运行请换新目录；系统命令名为 python3 时可相应替换。
 
-## 离线检查
+查看真实的检查失败：
 
-评测工具要求 Python 3.11+，无第三方 Python 依赖；原生 Skill 工作区准备另需 Git。在源码根目录运行：
+```powershell
+python judgment.py check --case Q01 --answer examples/quickstart/incorrect.json
+```
+
+该命令预期退出码为1，因为示例把已取消订单也算进去了。格式/字数检查通过只表示声明的属性通过，其他质量仍需评价。
+
+## 它能做什么
+
+- 不调用模型地检查 JSON、CSV、固定文本和字数等声明属性。
+- 在共同硬性要求下比较：A仅任务、B加领域Skill、C再加完整核心、D改加一句提醒。
+- 保留输入和输出指纹、来源、失败记录，把私密实验与评审导出分开。
+- 记录硬门槛、质量分、成对偏好和分歧，显式选择评审轮次，避免混合修正轮或虚增样本量。
+- 在项目内安装可选Skill；已有文件不覆盖，卸载时遇到用户修改或新增内容就停止。
+
+真实调用默认关闭。原生收集还需Codex CLI和Git、明确模型名、真实授权及显式live参数。外部真实回答可附来源收集。只读沙盒不等于隐私隔离。
+
+## 实际效果与边界
+
+完整核心尚未证明普遍优于一句提醒。v0.6八题对照为1胜7平，唯一胜出来自对方超限1词。初始评审存在会话摘要接触，已披露并另做限范围复评，两轮结果分别保留。这些都是小样本模型评审，不能当成人工效用证明或等效证明。[完整结果](docs/FOLLOWUP_V06_RESULTS.md)。
+
+工具的软件质量和可选Skill的效果需要分别判断。日常先把需求写清楚并使用适用的专业Skill，完整核心按需试用。[怎样选用](docs/USAGE_DECISION.md)。
+
+## 安装可选Skill
+
+```powershell
+python judgment.py skill install --project "目标项目绝对路径" --dry-run
+python judgment.py skill install --project "目标项目绝对路径"
+```
+
+目标必须是已有目录。安装后在支持的宿主明确调用 `$judgment-preserver`。不会改动全局配置；已存在的Skill拒绝覆盖；卸载只接受原样的托管安装。[卸载和限制](docs/CLI.md#managed-skill-installation)。核心仍是v0.2正文，0.7是工具包版本。
+
+## 参与开发
 
 ```powershell
 python -B -m unittest discover -s tests -v
-python -B scripts/audit_skills.py .agents/skills/judgment-preserver/SKILL.md --strict-metadata
-python -B scripts/demo.py --out runs/demo-01
-python -B scripts/release.py --check
+python -B judgment.py selftest --out runs/pipeline-smoke
+python -B judgment.py release --check
 ```
 
-演示只创建空槽位与调用计划，不生成模型回答或评分。重复演示请换新目录。测试中的回答和分数是临时软件夹具，不能充当研究证据。
+[贡献指南](CONTRIBUTING.md) · [安全说明](SECURITY.md) · [社区规则](CODE_OF_CONDUCT.md) · [发布步骤](docs/PUBLISHING.md) · [当前验证范围](docs/V0.7_STATUS.md)
 
-## 复现实验
-
-[完整复现](docs/REPRODUCE.md) 保留传统单份评审流程；[成对盲评说明](docs/PAIRED_REVIEW.md) 介绍本版新流程。两种评分尺度和报告分别存放，不混合。四组含义：A 只有任务，B 加领域 Skill，C 再加完整核心，D 改加一句提醒。每组收到相同硬性要求。
-
-```powershell
-python -B scripts/benchmark.py prepare --cases evals/followup_v06_cases.json --out runs/study-01 --mode codex-native --seed 20261028 --repeats 1
-python -B scripts/codex_adapter.py run --out runs/study-01 --max-runs 4
-```
-
-第二条默认空跑。真实调用必须额外显式填写 `--live --acknowledge-cost --subscription-only --model 实际模型名`，核对账号和额度，再限制次数。原生 CLI 不在 PATH 时可加 `--cli 原生可执行文件绝对路径`。工具不购买额度、不重置额度，也不保证费用上限。
-
-只向评审提供单独导出的目录，不能提供整个实验目录。模型评审须注明模型来源；未知版本如实写未知，不冒充独立人工评价。文本合格不等于完整执行行为合规，Skill 文件就位不等于实际遵循。
-
-## 发布与备份
-
-`VERSION` 决定归档前缀。源码发布白名单排除原回答、轨迹、条件表和评分资料；发布前仍需人工检查隐私。
-
-```powershell
-python -B scripts/release.py --check --zip ../Judgment-OS-v0.6.zip
-python -B scripts/checkpoint.py --dest ../backup-v0.6 --evidence runs/study-01
-python -B scripts/checkpoint.py --verify ../backup-v0.6
-```
-
-使用新的外部目标目录，不覆盖旧版。原始 v0.2 完整保存在 `legacy/v0.2/`，可分发核心副本因正文未变仍沿用 v0.2 文件名。MIT 许可。远程 CI 配置不等于 CI 已运行；独立人工效用、跨模型复现和宿主完全隔离仍待验证。
+已配置Windows/Linux与Python3.11/3.14的CI；本地通过不等于远端Actions已通过，不放未经验证的绿色徽章。手动源码构建工作流只生成artifact，不自动公开研究数据或创建GitHub Release。原始资料保留在legacy/，旧交接文本移入docs/history/；历史指令不能替代当前用户授权。

@@ -1,0 +1,28 @@
+name: Bug report
+description: Report reproducible tool behavior without private study data
+title: "[Bug]: "
+body:
+  - type: input
+    id: version
+    attributes:
+      label: Tool version, Python version and OS
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Minimal command and fictional input
+      description: Remove local paths, credentials, personal data and raw private outputs.
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Expected and actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: checks
+    attributes:
+      label: Relevant error and validation result
+      description: Do not paste unredacted traces or account data.

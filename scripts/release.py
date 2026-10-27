@@ -8,8 +8,8 @@ import sys
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-TOP = ("README.md", "README.zh-CN.md", "CHANGELOG.md", "LICENSE", ".gitignore",
-       "00_给Codex_先看这里.md", "CODEX_COPY_PASTE_PROMPT.txt", "VERSION")
+TOP = ("README.md", "README.zh-CN.md", "CHANGELOG.md", "LICENSE", ".gitignore", ".gitattributes",
+       "AGENTS.md", "CONTRIBUTING.md", "CODE_OF_CONDUCT.md", "SECURITY.md", "judgment.py", "VERSION")
 DIRS = (".agents", ".github", "distribution", "docs", "evals", "examples", "global", "scripts", "tests", "legacy")
 SUFFIXES = {".md", ".txt", ".py", ".json", ".yml", ".yaml", ".snippet"}
 PRIVATE_DIRS = {"__pycache__", ".git", "runs", "review-exports", "artifacts", "traces", "workspaces", "judges", "paired_judges", "outputs", "prompts", "states", "review_packets"}
@@ -60,6 +60,11 @@ def main(argv=None):
     skill = ROOT / ".agents/skills/judgment-preserver/SKILL.md"
     if skill.read_bytes() != (ROOT / "distribution/judgment-preserver-v0.2-SKILL.md").read_bytes():
         raise ValueError("Portable Skill distribution copy is out of sync")
+    for ref in (skill.parent / "references").rglob("*"):
+        if ref.is_file():
+            portable = ROOT / "distribution/references" / ref.relative_to(skill.parent / "references")
+            if not portable.is_file() or portable.read_bytes() != ref.read_bytes():
+                raise ValueError("Portable Skill references are missing or out of sync")
     if args.archive:
         archive = Path(args.archive).resolve()
         if archive.is_relative_to(ROOT):

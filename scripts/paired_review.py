@@ -234,7 +234,7 @@ def report(out, reviewers=None):
     return result
 
 
-if __name__ == "__main__":
+def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     subs = parser.add_subparsers(dest="command", required=True)
     for name in ("export", "import", "report"):
@@ -249,7 +249,7 @@ if __name__ == "__main__":
         if name == "import":
             for arg in ("quality", "pairs", "model"):
                 sub.add_argument("--" + arg, required=True)
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
     if args.command == "export":
         print(export(args.out, args.dest, args.reviewer))
     elif args.command == "import":
@@ -258,3 +258,13 @@ if __name__ == "__main__":
     else:
         result = report(args.out, args.reviewers)
         print(f"Reported {len(result['judges'])} model reviewers")
+    return 0
+
+
+if __name__ == "__main__":
+    try:
+        raise SystemExit(main())
+    except (ValueError, OSError, KeyError, TypeError) as exc:
+        parser_message = f"ERROR: {exc}"
+        print(parser_message)
+        raise SystemExit(1)

@@ -1,3 +1,13 @@
+# v0.7 validation — 2026-10-27
+
+Local Windows/Python3.14.6: 68 tests, 67 pass / 1 privilege-dependent symlink skip. Public CLI coverage includes routing/help from another cwd, no-auth offline doctor, no-answer tutorial, check exit codes, managed installation/removal, overwrite refusal, preservation of user changes and explicit report-phase selection. A separate real Windows junction probe validates actual reparse-path refusal.
+
+Public tutorial, larger smoke test and Skill metadata pass with zero model calls. No new effectiveness study was run. Final source-manifest and clean Git-checkout checks follow documentation finalization. Archived local records distinguish these from remote CI, which has not run.
+
+Earlier version verification follows unchanged.
+
+---
+
 # v0.6 verification — 2026-10-27
 
 Local Windows/Python 3.14.6 checks passed: **57 unit tests** in 13.212 seconds after the report-phase repair (the earlier 56-test run is also preserved), strict Skill metadata, and offline demo. Logs and Python source/test fingerprints are retained separately. The nine new paired-review tests cover independent aliases, pair orientation, disagreements, incomplete/duplicate rows, invalid scores, gate precedence, packet/output mutation, immutable imports, pending-slot refusal and explicit reviewer-subset selection without silent phase pooling. Release tests also exercise the new private paired-review paths.

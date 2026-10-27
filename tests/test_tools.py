@@ -43,6 +43,10 @@ class ToolTests(unittest.TestCase):
                 path = root / name
                 path.parent.mkdir(parents=True, exist_ok=True)
                 path.write_text("SKILL FIXTURE", encoding="utf-8")
+            for name in (".agents/skills/judgment-preserver/references/boundary.md", "distribution/references/boundary.md"):
+                path = root / name
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text("REFERENCE FIXTURE", encoding="utf-8")
             private = ("runs/study/private_condition_map.json", "docs/private_condition_map.json", "evals/alice.receipt.json", "docs/review-exports/answer.md", "evals/.env",
                        "evals/paired_judges/j1.ratings.json", "docs/paired_report.json", "evals/study_plan.json")
             for name in private:
@@ -59,6 +63,9 @@ class ToolTests(unittest.TestCase):
                 (root / "README.md").write_text("modified", encoding="utf-8")
                 with self.assertRaises(ValueError):
                     release.main(["--check"])
+                (root / "distribution/references/boundary.md").unlink()
+                with self.assertRaises(ValueError):
+                    release.main([])
 
     def test_case_generation_is_reproducible(self):
         before = (ROOT / "evals/cases.json").read_bytes()

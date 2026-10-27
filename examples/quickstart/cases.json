@@ -1,0 +1,22 @@
+[
+  {
+    "id": "Q01",
+    "category": "control_exact",
+    "user_prompt": "Software tutorial task. Orders: A has amount 4 and status paid; B has amount 7 and status paid; C has amount 9 and status cancelled. Sum only paid amounts. Return only one JSON object with integer total and count keys. No extra keys or prose.",
+    "domain_skill": "Reconcile eligibility before aggregation, keep counts distinct from sums, and preserve the requested interface. For an open report, an optional summary can help the reader; for an exact machine interface, deliver only the requested data. Never invent records or change the supplied rules.",
+    "hard_gates": ["Return the exact requested JSON result, with integer values and no extra content."],
+    "review_focus": "This toy case checks filtering and a narrow JSON contract. Correctness is exact; extra prose has no value. This is a software tutorial, not efficacy evidence.",
+    "validators": [{"kind": "json_exact", "value": {"total": 11, "count": 2}}],
+    "quality_anchors": {"0": "Unrelated", "1": "Wrong population", "2": "Substantial corrections needed", "3": "Nearly correct but fails one exact requirement", "4": "Exact contract and arithmetic"}
+  },
+  {
+    "id": "Q02",
+    "category": "control_exact",
+    "user_prompt": "Software tutorial task. The readiness flag is true. Return exactly READY, without quotes, explanation, Markdown or any other text.",
+    "domain_skill": "Status interfaces should be concise and unambiguous. Follow exact user-specified tokens when present. Optional status explanations are useful only when the receiving interface permits them. Never add an explanation to a fixed-token response.",
+    "hard_gates": ["Return exactly READY."],
+    "review_focus": "Exact token fidelity. This is a software tutorial, not model-performance data.",
+    "validators": [{"kind": "exact_text", "value": "READY"}],
+    "quality_anchors": {"0": "Unrelated", "1": "Wrong state", "2": "Ambiguous", "3": "Correct state but wrong interface", "4": "Exact READY token"}
+  }
+]
