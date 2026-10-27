@@ -1,0 +1,24 @@
+name: Validate prototype
+on:
+  push:
+  pull_request:
+jobs:
+  unit-tests:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ['3.11', '3.14']
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Unit tests (stdlib only)
+        run: python -m unittest discover -s tests -v
+      - name: Validate local Skill manifest
+        run: python scripts/audit_skills.py .agents/skills/judgment-preserver/SKILL.md --strict-metadata
+      - name: Offline demo (no credentials or model calls)
+        run: python scripts/demo.py --out runs/ci-demo
+      - name: Validate release files and checksum manifest
+        run: python scripts/release.py --check

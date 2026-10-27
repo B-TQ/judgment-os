@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+runs/
+review-exports/
+artifacts/
+private_condition_map.json
+*.receipt.json
+*.ratings.json
+*.last-message.tmp
+.DS_Store
+.env
