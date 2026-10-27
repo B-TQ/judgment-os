@@ -8,9 +8,9 @@ Reviewed current code, Skill and reference, public fixtures, test contracts, doc
 
 检查源码、Skill、公开示例、测试、文档、工作流权限、依赖、许可及四条历史提交。启发式扫描覆盖当前文本和可达历史 blob/提交元数据。测试里虚构的 someone 路径为已人工确认的误报；未把真实凭据或个人路径带入公开内容。扫描不能证明穷尽所有敏感信息，仍需人工检查。
 
-The supplied chat credential was used only in child-process memory for an authorized retry after the existing OS-keyring login failed to upload workflows. Both attempts were rejected for missing workflow permission. It was not copied into source, archived in requirements, saved in Git authentication, or included in artifacts. The chat credential should be revoked by its owner; this launch does not assert revocation.
+The supplied chat credential was used only in child-process memory for an authorized retry after the existing OS-keyring login failed to upload workflows. Both attempts were rejected for missing workflow permission; the owner subsequently authorized and completed GitHub CLI scope refresh, and the refreshed keyring login pushed successfully. It was not copied into source, archived in requirements, saved in Git authentication, or included in artifacts. The chat credential should be revoked by its owner; this launch does not assert revocation.
 
-现有登录缺少 workflow 权限，随后仅在子进程内存中使用用户提供的凭据做授权重试，仍被 GitHub 以相同原因拒绝。凭据未存源码、需求文档、Git 配置或附件。聊天凭据应由用户撤销，本报告不声称已撤销。
+现有登录缺少 workflow 权限，随后仅在子进程内存中使用用户提供的凭据做授权重试，仍被 GitHub 以相同原因拒绝；之后用户授权并完成 CLI 补授 workflow 权限，刷新后的登录推送成功。凭据未存源码、需求文档、Git 配置或附件。聊天凭据应由用户撤销，本报告不声称已撤销。
 
 Publish only allowlisted source and original project-owned artwork. Do not upload studies, raw answers, private reviewer maps, account traces, source-history bundles containing private backups, launch operator scripts or requirement archives. Git authors use nonpersonal invalid-domain addresses. Remote URLs carry no embedded credentials. No source history is rewritten.
 

@@ -2,42 +2,51 @@
 
 Date / 日期: 2026-10-27 (Asia/Shanghai).
 
-Repository / 仓库: https://github.com/B-TQ/judgment-os
+- Repository / 仓库: https://github.com/B-TQ/judgment-os
+- Release / 版本: https://github.com/B-TQ/judgment-os/releases/tag/v0.7
+- Verified engineering run / 已验证工程 CI: https://github.com/B-TQ/judgment-os/actions/runs/40517468018
+- Latest/tag checks / 最新与标签检查: https://github.com/B-TQ/judgment-os/actions/workflows/ci.yml
 
-Release destination / 版本地址: https://github.com/B-TQ/judgment-os/releases/tag/v0.7
+## Delivered / 交付内容
 
-## Completed preparation / 已完成准备
+English/Chinese README, Chinese quickstart, bilingual contribution/security guidance, implementation audit, evidence summary, six original PNGs and editable SVG/HTML, reproducible fixture demo, architecture diagram, dual-language release notes, X/HN/Reddit and four Chinese-community drafts, feedback form and a day 1/3/7/14/30 plan. [Launch kit](docs/launch/README.md).
 
-English/Chinese README, Chinese quickstart, bilingual contribution/security additions, implementation audit, honest evidence summary, original social/architecture/fixture-demo graphics with SVG/HTML/PNG sources, release notes, X/HN/Reddit and four Chinese-community drafts, feedback form and a day 1/3/7/14/30 plan. Windows users can double-click TRY_DEMO.cmd after installing Python; the cross-platform shortcut is `python scripts/try_demo.py`. Launch materials live in [docs/launch](docs/launch/README.md).
+Windows: install Python 3.11+, then double-click TRY_DEMO.cmd. Cross-platform: `python scripts/try_demo.py`. Both run the same three offline commands with a fresh output directory. No account, pip install or API key is needed.
 
-原 v0.7 保留。本发布副本保留四条 Git 历史及 MIT 许可，未改动可选 Skill 核心正文、历史案例或研究结论。仅为发布材料扩展限定目录内的源码打包白名单，并增加防止其他目录私密图片误打包的回归测试。
+原 v0.7 未覆盖；发布副本保留四条原 Git 历史及 MIT 许可。可选 Skill 正文与原基线逐字节一致，历史案例与研究结论未改。只为发布材料扩展了限定目录内的源码打包白名单，新增防止其他目录私密图片误打包的回归测试，并补便捷离线入口。
 
-## Verification / 验证
+## Verification / 实际验证
 
-Final local Windows/Python 3.14 suite: **69 tests, 68 passed, one skipped** for unavailable Windows symlink privilege. Strict metadata audit, doctor, 8-slot tutorial, 64-slot-per-mode smoke, intentional pass/fail fixture exits and the convenience launcher passed. The optional Skill's bytes match the original baseline. Six PNGs were visually inspected; social images are exactly 1280×640. All checked active Markdown relative links resolved. No new model call was made.
+- Local Windows/Python 3.14, including a clean Git clone: **69 tests, 68 passed, one skipped** for unavailable Windows symlink privilege. The skip remains disclosed.
+- The linked remote engineering workflow completed with **success** for Windows/Linux × Python 3.11/3.14. Each job ran 69 tests, plus doctor, strict Skill metadata audit, 8-slot tutorial, 64-slot-per-mode smoke, release manifest and clean-tree checks. Final documentation/manifest changes are required to pass the same workflow before the tag is published; the Release records that final run.
+- Public HTTPS clone tested: doctor, tutorial, correct-answer check and manifest check succeeded. The intentional incorrect fixture exits 1; the correct fixture exits 0.
+- Source ZIP extraction and all source-manifest hashes verified. All active checked Markdown relative links resolve. Six PNGs were visually inspected; social covers are exactly 1280×640 and contain no text/EXIF metadata.
+- **Zero new model calls**, generated answers or ratings for launch. Software verification is not efficacy evidence.
 
-本地 69 项测试中 68 通过，1 项因符号链接权限跳过；元数据、离线教程、大型 smoke、预期通过/失败和便捷入口均通过。核心正文未变，六张图片已检查。远端发布与 CI 仍在下方记录，不能用本地结果替代。
+本地与干净克隆均为 69 项，68 通过、1 项权限跳过。远端四组合工程工作流已成功，每组运行 69 项及离线完整流程。最终文档与清单提交也需经同样 CI 通过才发布 tag，最终运行链接写入 Release。公开克隆、解压哈希、正误示例、相对链接和六张图均已检查。本次没有新增模型效果调用。
 
-## Privacy and evidence / 隐私与证据
+## Privacy and authorization / 隐私与授权
 
-The existing OS-keyring login failed to upload workflow files. The credential supplied in chat was then used only in child-process memory for one authorized retry, which was also rejected for missing workflow permission. It was not saved to Git configuration or project artifacts. Revoke the chat credential. Working source and reachable history were scanned and manually reviewed before push. Only source and original artwork are intended for publication; private studies, raw answers, reviewer maps, account traces, requirement archives and local operator files stay outside the public repository.
+Current source and reachable Git-history blobs/metadata were inspected using a local heuristic scan plus manual review. The only baseline personal-path finding was a fictional `someone` redaction-test fixture, manually confirmed and excluded as an example. No actual credential or personal path was accepted for publication. Detection is not exhaustive; it is not a security certification.
 
-现有登录和聊天凭据均缺 workflow 权限。聊天凭据只在子进程内存中用于一次重试，未写入项目文件或 Git 配置；请撤销。公开范围只含源码与原创视觉材料，私密实验、原始回答、评审映射、账号追踪、需求归档与本机操作脚本均不公开。
+Initial pushes using the existing OAuth login and supplied chat token were rejected for missing workflow permission. The chat token was used only in child-process memory for one authorized retry; it was not saved in source, requirements, Git config or artifacts. The owner then explicitly authorized GitHub CLI permission refresh and completed GitHub's device flow. The refreshed OS-keyring CLI login supplied workflow scope and pushed successfully. **Revoke the token pasted in chat.** This report does not claim it has been revoked.
 
-The eight-case result stays 1 win / 7 ties for C–D, with the sole win due to one word over budget. No new model calls, human review, Claude Code integration or general efficacy proof were added. Complete historical model judgments cannot be independently recomputed without private study artifacts. See [evidence](docs/launch/EVIDENCE.md) and [validation boundaries](docs/launch/VALIDATION.md).
+Only allowlisted source and original artwork are published. Raw studies, genuine private answers, reviewer maps/receipts, account traces, requirement archives and local operator scripts stay outside the public repository. No history rewrite, force push, private-study upload, telemetry or social-media posting is part of this launch.
 
-## Manual work and unverified items / 手动事项与未验证内容
+源码及完整可达历史已做启发式扫描和人工检查。初次两种认证缺 workflow 权限，随后用户明确授权补授并完成 GitHub 浏览器流程，CLI 推送成功。聊天令牌仅在内存重试，未写入项目和附件；请撤销。公开范围只含白名单源码与原创图，私密研究、真实回答、映射、账号日志及需求档案均不公开。未改写历史、未加遥测、未代发社区内容。
 
-Community posts are drafts only. Choose channels and publish manually after checking current rules. The month plan is manual and does not install telemetry or schedule work. The browser settings tab opened, but its automation debugger could not attach; Social Preview upload remains manual.
+## Repository setup / 仓库配置
 
-各社区没有代发，月度计划没有设置自动任务，也没有加遥测。浏览器已打开仓库设置，但自动化连接返回 debugger unattached；封面需在 Settings → General → Social preview 手动上传 docs/launch/assets/social-preview.png。
+Public repository, main branch, bilingual description, eight relevant topics, Discussions and private vulnerability reporting are configured and verified. No invented homepage. Pinned Actions retain read-only workflow permissions. The optional artwork renderer uses existing Node/Playwright/browser tooling; those packages are not runtime dependencies or bundled assets.
 
-## Remote status / 远端状态
+## Manual actions / 需手动完成
 
-The public repository was created successfully. Pushes using both the pre-existing OAuth login and the supplied personal token were rejected because they lack workflow permission. No source branch, remote Actions run, tag or GitHub Release has been published at this snapshot. The intended release URL above is a destination, not a claim of existence. Permission repair is required before retry; workflows and original history are retained.
+1. Revoke the credential pasted in chat / 撤销聊天中提供的令牌。
+2. Upload [social-preview.png](docs/launch/assets/social-preview.png) at Settings → General → Social preview. The browser settings tab opened, but automation could not attach; the image has **not** been set as the repository Social Preview. 中文封面也已提供，浏览器自动上传未完成。
+3. Choose and publish community drafts after checking each community's current rules. Nothing was posted on your behalf. Follow the first-month plan manually; no recurring automation was created. / 自行选渠道发文并手动执行首月计划。
 
-Repository description and eight relevant topics are configured. Discussions and private vulnerability reporting are enabled and verified through the API. No homepage was invented. Social Preview is prepared but not uploaded.
+## Unverified or planned / 尚未验证与规划
 
-公开仓库已创建；两种认证推送均被 GitHub 拒绝，缺 workflow 权限。当前没有上传成功的源码分支、远端 CI、tag 或 Release。上方版本地址只是计划地址。需补齐权限后继续，未为绕过错误删除工作流或改写历史。
+The eight-case C–D result remains **1 win / 7 ties**, with the sole win caused by D exceeding a word budget by one word. Both initial review-context leakage and the corrective phase remain disclosed. No general superiority, independent human utility, Claude Code native integration or cross-model replication is claimed. Complete historical model judgments cannot be independently recomputed without private artifacts. [Evidence](docs/launch/EVIDENCE.md) · [Risk and validation boundaries](docs/launch/VALIDATION.md).
 
-仓库描述、八个相关主题已设置；Discussions 和私密漏洞报告已通过 API 启用并核验。没有虚构 Homepage，封面文件已备好但未上传。
+原八题有限结果、评审偏差和采用门槛均保留。独立人工效用、其他宿主原生适配和跨模型研究是后续工作，不是已交付功能。完整核心继续可选。
