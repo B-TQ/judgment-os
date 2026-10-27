@@ -1,5 +1,7 @@
 # Judgment OS v0.7 — test what your agent's Skills change
 
+Release-note draft until the actual tag, remote CI and publication are verified. / tag、远端 CI 与发布实际验证前，本文件是版本说明草稿。
+
 [English](#english) · [中文](#中文)
 
 ## English

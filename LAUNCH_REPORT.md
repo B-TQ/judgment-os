@@ -20,14 +20,24 @@ Final local Windows/Python 3.14 suite: **69 tests, 68 passed, one skipped** for 
 
 ## Privacy and evidence / 隐私与证据
 
-The credential supplied in chat was not used or copied into project artifacts; existing OS-keyring CLI authentication is sufficient. Revoke the chat credential. Working source and reachable history are scanned and manually reviewed before push. Only source and original artwork are intended for publication; private studies, raw answers, reviewer maps, account traces, requirement archives and local operator files stay outside the public repository.
+The existing OS-keyring login failed to upload workflow files. The credential supplied in chat was then used only in child-process memory for one authorized retry, which was also rejected for missing workflow permission. It was not saved to Git configuration or project artifacts. Revoke the chat credential. Working source and reachable history were scanned and manually reviewed before push. Only source and original artwork are intended for publication; private studies, raw answers, reviewer maps, account traces, requirement archives and local operator files stay outside the public repository.
 
-聊天凭据未使用、未写入项目文件；请撤销。公开范围只含源码与原创视觉材料，私密实验、原始回答、评审映射、账号追踪、需求归档与本机操作脚本均不公开。
+现有登录和聊天凭据均缺 workflow 权限。聊天凭据只在子进程内存中用于一次重试，未写入项目文件或 Git 配置；请撤销。公开范围只含源码与原创视觉材料，私密实验、原始回答、评审映射、账号追踪、需求归档与本机操作脚本均不公开。
 
 The eight-case result stays 1 win / 7 ties for C–D, with the sole win due to one word over budget. No new model calls, human review, Claude Code integration or general efficacy proof were added. Complete historical model judgments cannot be independently recomputed without private study artifacts. See [evidence](docs/launch/EVIDENCE.md) and [validation boundaries](docs/launch/VALIDATION.md).
 
 ## Manual work and unverified items / 手动事项与未验证内容
 
-Community posts are drafts only. Choose channels and publish manually after checking current rules. The month plan is manual and does not install telemetry or schedule work. Social Preview upload status, remote CI, release assets and repository settings will be finalized below after actual verification.
+Community posts are drafts only. Choose channels and publish manually after checking current rules. The month plan is manual and does not install telemetry or schedule work. The browser settings tab opened, but its automation debugger could not attach; Social Preview upload remains manual.
 
-各社区没有代发，月度计划没有设置自动任务，也没有加遥测。社交封面设置、远端 CI 与发布附件以最终更新为准。
+各社区没有代发，月度计划没有设置自动任务，也没有加遥测。浏览器已打开仓库设置，但自动化连接返回 debugger unattached；封面需在 Settings → General → Social preview 手动上传 docs/launch/assets/social-preview.png。
+
+## Remote status / 远端状态
+
+The public repository was created successfully. Pushes using both the pre-existing OAuth login and the supplied personal token were rejected because they lack workflow permission. No source branch, remote Actions run, tag or GitHub Release has been published at this snapshot. The intended release URL above is a destination, not a claim of existence. Permission repair is required before retry; workflows and original history are retained.
+
+Repository description and eight relevant topics are configured. Discussions and private vulnerability reporting are enabled and verified through the API. No homepage was invented. Social Preview is prepared but not uploaded.
+
+公开仓库已创建；两种认证推送均被 GitHub 拒绝，缺 workflow 权限。当前没有上传成功的源码分支、远端 CI、tag 或 Release。上方版本地址只是计划地址。需补齐权限后继续，未为绕过错误删除工作流或改写历史。
+
+仓库描述、八个相关主题已设置；Discussions 和私密漏洞报告已通过 API 启用并核验。没有虚构 Homepage，封面文件已备好但未上传。
